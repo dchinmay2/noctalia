@@ -54,6 +54,22 @@ namespace {
 
 } // namespace
 
+std::optional<bool> BatteryHookState::pluggedState(BatteryState state) {
+  switch (state) {
+  case BatteryState::Charging:
+  case BatteryState::FullyCharged:
+  case BatteryState::PendingCharge:
+    return true;
+  case BatteryState::Discharging:
+  case BatteryState::PendingDischarge:
+    return false;
+  case BatteryState::Unknown:
+  case BatteryState::Empty:
+    return std::nullopt;
+  }
+  return std::nullopt;
+}
+
 void BatteryHookState::reset(const UPowerState& state) {
   m_initialized = true;
   m_lastStateHook = batteryStateHook(state.state);

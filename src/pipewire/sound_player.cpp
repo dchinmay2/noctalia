@@ -167,7 +167,7 @@ std::vector<std::pair<std::string, std::string>> SoundPlayer::availableThemes() 
 
 void SoundPlayer::setTheme(std::string theme) {
   m_buffers.clear();
-  for (const std::string_view event : {"message", "audio-volume-change"}) {
+  for (const std::string_view event : {"message", "audio-volume-change", "power-plug", "power-unplug"}) {
     std::set<std::string> visited;
     const auto path = findThemeSound(event, theme, visited);
     if (!path.has_value()) {
