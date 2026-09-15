@@ -16,6 +16,7 @@ public:
 
   void reset(const UPowerState& state);
   [[nodiscard]] std::vector<Event> update(const UPowerState& state);
+  [[nodiscard]] static std::optional<bool> pluggedState(BatteryState state);
 
 private:
   bool m_initialized = false;
